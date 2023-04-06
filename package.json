@@ -5,21 +5,21 @@
   "main": "lib/index.js",
   "scripts": {
     "eslint": "node_modules/.bin/eslint .",
-    "build": "npm run clean && npm run build:js",
+    "build": "yarn clean && yarn build:js",
     "build:demo": ".circleci/build-demo.sh",
     "build:js":
       "BABEL_DISABLE_CACHE=1 BABEL_ENV=production NODE_ENV=production node_modules/.bin/babel --out-dir='lib' --ignore='**/__test__/*' src",
     "clean":
       "node_modules/.bin/rimraf lib; node_modules/.bin/rimraf demo/public",
     "deploy:demo": ".circleci/deploy-demo.sh",
-    "prepublish": "npm run build",
-    "start": "npm run start:dev",
+    "prepublish": "yarn build",
+    "start": "yarn start:dev",
     "start:dev": "node_modules/.bin/babel-node ./demo/server.js",
-    "test": "npm run test:coverage",
+    "test": "yarn test:coverage",
     "test:coverage":
-      "node_modules/.bin/nyc --require babel-core/register npm run test:mocha",
+      "node_modules/.bin/nyc --require babel-core/register yarn test:mocha",
     "test:mocha": "mocha --opts .mocha.opts $(find src -name '*-test.js')",
-    "test:watch": "npm test | npm run watch",
+    "test:watch": "yarn test | yarn watch",
     "watch": "npm-watch",
     "postinstall": "opencollective postinstall"
   },
